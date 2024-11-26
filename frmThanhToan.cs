@@ -22,7 +22,7 @@ namespace CuahangNongduoc
         {
             ctrlKH.HienthiChungAutoComboBox(cmbKhachHang);
             ctrlKH.HienthiKhachHangChungDataGridviewComboBox(colKhachHang);
-            ctrl.HienthiPhieuThanhToan(bindingNavigator, dataGridView, cmbKhachHang, txtMaPhieu, dtNgayThanhToan, numTongTien, txtGhiChu);
+            ctrl.HienthiPhieuThanhToan(bindingNavigator, dataGridView, cmbKhachHang, txtMaPhieu, dtNgayThanhToan, numTongTien, txtGhiChu, txtDV, numPhi_DV, numPhi_VC);
             bindingNavigator.BindingSource.AddingNew += new AddingNewEventHandler(BindingSource_AddingNew);
         }
 
@@ -66,6 +66,8 @@ namespace CuahangNongduoc
             txtMaPhieu.Focus();
             bindingNavigator.BindingSource.MoveNext();
             ctrl.Save();
+            ctrl.HienthiPhieuThanhToan(bindingNavigator, dataGridView, cmbKhachHang, txtMaPhieu, dtNgayThanhToan, numTongTien, txtGhiChu, txtDV, numPhi_DV, numPhi_VC);
+            dataGridView.Refresh();
         }
 
         private void dataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)

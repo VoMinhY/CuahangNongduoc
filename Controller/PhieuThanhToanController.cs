@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using CuahangNongduoc.DataLayer;
@@ -44,14 +44,15 @@ namespace CuahangNongduoc.Controller
             return ph;
         }
         
-        public void HienthiPhieuThanhToan(BindingNavigator bn, DataGridView dg,ComboBox cmb, TextBox txt, DateTimePicker dt, NumericUpDown numTongTien, TextBox txtGhichu)
+        public void HienthiPhieuThanhToan(BindingNavigator bn, DataGridView dg,ComboBox cmb, TextBox txt, DateTimePicker dt, NumericUpDown numTongTien, TextBox txtGhichu, TextBox txtDV, NumericUpDown phiDV, NumericUpDown phiVC)
         {
             BindingSource bs = new BindingSource();
             bs.DataSource = factory.DanhsachPhieuThanhToan();
             bn.BindingSource = bs;
             dg.DataSource = bs;
-
             
+
+
             txt.DataBindings.Clear();
             txt.DataBindings.Add("Text", bs, "ID");
 
@@ -66,6 +67,18 @@ namespace CuahangNongduoc.Controller
 
             txtGhichu.DataBindings.Clear();
             txtGhichu.DataBindings.Add("Text", bs, "GHI_CHU");
+
+            txtDV.DataBindings.Clear();
+            txtDV.DataBindings.Add("Text", bs, "DICH_VU");
+
+            phiDV.DataBindings.Clear();
+            // Khởi tạo binding với giá trị mặc định là 0 nếu giá trị là DBNull
+            phiDV.DataBindings.Add(new Binding("Value", bs, "PHI_DICH_VU", true, DataSourceUpdateMode.OnPropertyChanged, 0));
+
+
+            phiVC.DataBindings.Clear();
+            // Khởi tạo binding với giá trị mặc định là 0 nếu giá trị là DBNull
+            phiVC.DataBindings.Add(new Binding("Value", bs, "PHI_VAN_CHUYEN", true, DataSourceUpdateMode.OnPropertyChanged, 0));
 
 
         }
