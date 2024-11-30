@@ -108,10 +108,10 @@ namespace CuahangNongduoc
             {
                 MessageBox.Show("Vui lòng nhập Số lượng !", "Phieu Nhap", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (numDonGia.Value * numSoLuong.Value != numThanhTien.Value)
-            {
-                MessageBox.Show("Thành tiền sai!", "Phieu Nhap", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //else if (numDonGia.Value * numSoLuong.Value != numThanhTien.Value)
+            //{
+            //    MessageBox.Show("Thành tiền sai!", "Phieu Nhap", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
             else
             {
                 numTongTien.Value += numThanhTien.Value;
@@ -336,6 +336,43 @@ namespace CuahangNongduoc
             ctrlSanPham.HienthiAutoComboBox(cmbSanPham);
         }
 
+        #region Mã giảm giá bán lẻ
+        private void txtMaGiamGiaBanLe_TextChanged(object sender, EventArgs e)
+        {
+            double originalPrice = (double)numThanhTien.Value;
+            double defaultPrice = originalPrice;
+            double discountPrice = originalPrice;
+            string validDiscountCode = "SALE20";
+            double discountPercentage = 0.20;
+            string validDiscountCode2 = "SALE50";
+            double discountPercentage2 = 0.50;
+            Console.Write("Nhập mã giảm giá: ");
+            string userDiscountCode = txtMaGiamGiaBanLe.Text;
 
-     }
+            Console.WriteLine("Check discount code: " + userDiscountCode);
+
+            if (userDiscountCode == validDiscountCode)
+            {
+
+                if (originalPrice != 0)
+                {
+                    discountPrice = originalPrice * (1 - discountPercentage);
+                    numThanhTien.Value = (decimal)discountPrice;
+                }
+            }
+            else if (userDiscountCode == validDiscountCode2)
+            {
+                if (originalPrice != 0)
+                {
+                    discountPrice = originalPrice * (1 - discountPercentage2);
+                    numThanhTien.Value = (decimal)discountPrice;
+                }
+            }
+            else
+            {
+                numThanhTien.Value = numDonGia.Value * numSoLuong.Value;
+            }
+        }
+        #endregion
+    }
 }
