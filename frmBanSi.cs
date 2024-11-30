@@ -19,6 +19,7 @@ namespace CuahangNongduoc
         ChiTietPhieuBanController ctrlChiTiet = new ChiTietPhieuBanController();
         IList<MaSanPham> deleted = new List<MaSanPham>();
 
+        List<string> items = new List<string> { "5%", "10%", "15%", "20%" }; //--------------------
 
         Controll status = Controll.Normal;
 
@@ -39,6 +40,7 @@ namespace CuahangNongduoc
 
         private void frmNhapHang_Load(object sender, EventArgs e)
         {
+            cmbChietKhau_BanSi.DataSource = items; //--------------------
 
             ctrlSanPham.HienthiAutoComboBox(cmbSanPham);
             ctrlMaSanPham.HienThiDataGridViewComboBox(colMaSanPham);
@@ -117,13 +119,18 @@ namespace CuahangNongduoc
             }
             else
             {
-                numTongTien.Value += numThanhTien.Value;
+                int chietkhau = int.Parse(cmbChietKhau_BanSi.SelectedItem.ToString().TrimEnd('%')); //----------------------
+                decimal sauchietkhau = numThanhTien.Value - (numThanhTien.Value * chietkhau / 100); //----------------------
+                numTongTien.Value += sauchietkhau;
+
                 DataRow row = ctrlChiTiet.NewRow();
                 row["ID_MA_SAN_PHAM"] = cmbMaSanPham.SelectedValue;
                 row["ID_PHIEU_BAN"] = txtMaPhieu.Text;
                 row["DON_GIA"] = numDonGia.Value;
                 row["SO_LUONG"] = numSoLuong.Value;
                 row["THANH_TIEN"] = numThanhTien.Value;
+                row["CHIET_KHAU"] = chietkhau; //----------------------
+                row["SAU_CHIETKHAU"] = sauchietkhau; //----------------------
                 ctrlChiTiet.Add(row);
 
             }

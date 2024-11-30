@@ -39,6 +39,7 @@ namespace CuahangNongduoc
             // PhieuThanhToanBindingSource
             // 
             this.PhieuThanhToanBindingSource.DataSource = typeof(CuahangNongduoc.BusinessObject.PhieuThanhToan);
+//            this.PhieuThanhToanBindingSource.CurrentChanged += new System.EventHandler(this.PhieuThanhToanBindingSource_CurrentChanged);
             // 
             // reportViewer
             // 
@@ -48,17 +49,19 @@ namespace CuahangNongduoc
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer.LocalReport.ReportEmbeddedResource = "CuahangNongduoc.Report.rptThanhToan.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.reportViewer.Name = "reportViewer";
-            this.reportViewer.Size = new System.Drawing.Size(638, 445);
+            this.reportViewer.Size = new System.Drawing.Size(851, 548);
             this.reportViewer.TabIndex = 0;
             // 
             // frmInPhieuThanhToan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(638, 445);
+            this.ClientSize = new System.Drawing.Size(851, 548);
             this.Controls.Add(this.reportViewer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmInPhieuThanhToan";
             this.Text = "In Phieu Thanh Toan";
             this.Load += new System.EventHandler(this.frmPhieuThanhToan_Load);

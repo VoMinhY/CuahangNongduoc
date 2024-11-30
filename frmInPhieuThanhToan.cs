@@ -32,5 +32,6 @@ namespace CuahangNongduoc
             this.PhieuThanhToanBindingSource.DataSource = m_PhieuThanhToan; 
             this.reportViewer.RefreshReport();
         }
+
     }
 }
