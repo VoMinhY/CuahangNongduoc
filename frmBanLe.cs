@@ -20,6 +20,9 @@ namespace CuahangNongduoc
         IList<MaSanPham> deleted = new List<MaSanPham>();
         Controll status = Controll.Normal;
 
+
+        List<string> items = new List<string> { "5%", "10%", "15%", "20%" }; //--------------------
+
         public frmBanLe()
         {
             InitializeComponent();
@@ -36,6 +39,9 @@ namespace CuahangNongduoc
 
         private void frmNhapHang_Load(object sender, EventArgs e)
         {
+            
+            cmbChietKhau_BanLe.DataSource = items; //--------------------
+            cmbChietKhau_BanLe.Text = null;
 
             ctrlSanPham.HienthiAutoComboBox(cmbSanPham);
             ctrlMaSanPham.HienThiDataGridViewComboBox(colMaSanPham);
@@ -114,13 +120,18 @@ namespace CuahangNongduoc
             //}
             else
             {
-                numTongTien.Value += numThanhTien.Value;
+                int chietkhau = int.Parse(cmbChietKhau_BanLe.SelectedItem.ToString().TrimEnd('%')); //----------------------
+                decimal sauchietkhau = numThanhTien.Value - (numThanhTien.Value * chietkhau / 100); //----------------------
+                numTongTien.Value += sauchietkhau; //----------------------
+
                 DataRow row = ctrlChiTiet.NewRow();
                 row["ID_MA_SAN_PHAM"] = cmbMaSanPham.SelectedValue;
                 row["ID_PHIEU_BAN"] = txtMaPhieu.Text;
                 row["DON_GIA"] = numDonGia.Value;
                 row["SO_LUONG"] = numSoLuong.Value;
                 row["THANH_TIEN"] = numThanhTien.Value;
+                row["CHIET_KHAU"] = chietkhau; //----------------------
+                row["SAU_CHIETKHAU"] = sauchietkhau; //----------------------
                 ctrlChiTiet.Add(row);
 
             }
@@ -202,6 +213,16 @@ namespace CuahangNongduoc
 
             ctrlChiTiet.Save();
 
+            numTongTien.Value = 0;
+            numDonGia.Value = 0;
+            numSoLuong.Value = 0;
+            numThanhTien.Value = 0;
+            txtGiaNhap.Text = null;
+            txtGiaBanSi.Text = null;
+            txtGiaBanLe.Text = null;
+            txtGiaBQGQ.Text = null;
+            cmbChietKhau_BanLe.Text = null;
+            txtMaGiamGiaBanLe.Text = null;
         }
 
         private void toolLuu_Them_Click(object sender, EventArgs e)
@@ -224,7 +245,17 @@ namespace CuahangNongduoc
                 deleted.Add(new MaSanPham(Convert.ToString(row["ID_MA_SAN_PHAM"]), Convert.ToInt32(row["SO_LUONG"])));
                 bs.RemoveCurrent();
             }
-           
+
+            numDonGia.Value = 0;
+            numSoLuong.Value = 0;
+            numThanhTien.Value = 0;
+            txtGiaNhap.Text = null;
+            txtGiaBanSi.Text = null;
+            txtGiaBanLe.Text = null;
+            txtGiaBQGQ.Text = null;
+            cmbChietKhau_BanLe.Text = null;
+            txtMaGiamGiaBanLe.Text = null;
+
         }
 
         private void dgvDanhsachSP_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
@@ -289,6 +320,23 @@ namespace CuahangNongduoc
             btnAdd.Enabled = val;
             btnRemove.Enabled = val;
             dgvDanhsachSP.Enabled = val;
+        }
+        private void toolXemlai_Click(object sender, EventArgs e)
+        {
+            ctrlSanPham.HienthiAutoComboBox(cmbSanPham);
+            ctrlMaSanPham.HienThiDataGridViewComboBox(colMaSanPham);
+            ctrlKhachHang.HienthiAutoComboBox(cmbKhachHang, true);
+
+            numTongTien.Value = 0;
+            numDonGia.Value = 0;
+            numSoLuong.Value = 0;
+            numThanhTien.Value = 0;
+            txtGiaNhap.Text = null;
+            txtGiaBanSi.Text = null;
+            txtGiaBanLe.Text = null;
+            txtGiaBQGQ.Text = null;
+            cmbChietKhau_BanLe.Text = null;
+            txtMaGiamGiaBanLe.Text = null;
         }
 
         private void toolThoat_Click(object sender, EventArgs e)
@@ -374,5 +422,7 @@ namespace CuahangNongduoc
             }
         }
         #endregion
+
+        
     }
 }

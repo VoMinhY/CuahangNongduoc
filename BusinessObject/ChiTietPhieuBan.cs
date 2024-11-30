@@ -42,5 +42,19 @@ namespace CuahangNongduoc.BusinessObject
             set { m_ThanhTien = value; }
         }
 
+        //-------------------------------------------
+        private int m_ChietKhau;
+        public int ChietKhau
+        {
+            get { return m_ChietKhau; }
+            set { m_ChietKhau = value; }
+        }
+
+        private long m_SauChietKhau;
+        public long SauChietKhau
+        {
+            get { return m_SauChietKhau; }
+            set { m_SauChietKhau = value; }
+        }
     }
 }
