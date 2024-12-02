@@ -180,7 +180,6 @@ namespace CuahangNongduoc
             ctrlPhieuBan.Update();
 
             cmbChietKhau_BanSi.Text = null;
-            txtMaGiamGia.Text = null;
 
         }
         void ThemMoi()
@@ -223,7 +222,6 @@ namespace CuahangNongduoc
             txtGiaBanLe.Text = null;
             txtGiaBQGQ.Text = null;
             cmbChietKhau_BanSi.Text = null;
-            txtMaGiamGia.Text = null;
 
         }
 
@@ -255,7 +253,6 @@ namespace CuahangNongduoc
                 txtGiaBanLe.Text = null;
                 txtGiaBQGQ.Text = null;
                 cmbChietKhau_BanSi.Text = null;
-                txtMaGiamGia.Text = null;
             }
         }
 
@@ -364,7 +361,6 @@ namespace CuahangNongduoc
             txtGiaBanLe.Text = null;
             txtGiaBQGQ.Text = null;
             cmbChietKhau_BanSi.Text = null;
-            txtMaGiamGia.Text = null;
         }
 
         private void btnThemDaiLy_Click(object sender, EventArgs e)
@@ -386,45 +382,5 @@ namespace CuahangNongduoc
         {
 
         }
-
-        #region NHẬP MÃ GIẢM GIÁ "SALE20 HOẶC SALE50"
-        private void txtMaGiamGia_TextChanged(object sender, EventArgs e)
-        {
-            double originalPrice = (double)numThanhTien.Value;
-            double defaultPrice = originalPrice;
-            double discountPrice = originalPrice;
-            string validDiscountCode = "SALE20";
-            double discountPercentage = 0.20;
-            string validDiscountCode2 = "SALE50";
-            double discountPercentage2 = 0.50;
-            Console.Write("Nhập mã giảm giá: ");
-            string userDiscountCode = txtMaGiamGia.Text;
-
-            Console.WriteLine("Check discount code: " + userDiscountCode);
-
-            if (userDiscountCode == validDiscountCode)
-            {
-
-                if (originalPrice != 0)
-                {
-                    discountPrice = originalPrice * (1 - discountPercentage);
-                    numThanhTien.Value = (decimal)discountPrice;
-                }
-            }
-            else if (userDiscountCode == validDiscountCode2)
-            {
-                if (originalPrice != 0)
-                {
-                    discountPrice = originalPrice * (1 - discountPercentage2);
-                    numThanhTien.Value = (decimal)discountPrice;
-                }
-            }
-            else
-            {
-                numThanhTien.Value = numDonGia.Value * numSoLuong.Value;
-            }
-        }
-        #endregion
-
     }
 }

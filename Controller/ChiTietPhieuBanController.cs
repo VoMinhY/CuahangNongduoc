@@ -15,11 +15,13 @@ namespace CuahangNongduoc.Controller
 
 
 
-        public void HienThiChiTiet(DataGridView dgv, String idPhieuBan)
+        public void HienThiChiTiet(DataGridView dgv, String idPhieuBan /*ComboBox cmb*/)
         {
             BindingSource bs = new BindingSource();
             bs.DataSource = factory.LayChiTietPhieuBan(idPhieuBan);
             dgv.DataSource = bs;
+            //cmb.DataBindings.Clear();
+            //cmb.DataBindings.Add("Value", bs, "CHIET_KHAU");
         }
         public DataRow NewRow()
         {
@@ -47,6 +49,8 @@ namespace CuahangNongduoc.Controller
                 ct.DonGia = Convert.ToInt64(row["DON_GIA"]);
                 ct.SoLuong = Convert.ToInt32(row["SO_LUONG"]);
                 ct.ThanhTien = Convert.ToInt64(row["THANH_TIEN"]);
+                //ct.ChietKhau = Convert.ToInt32(row["CHIET_KHAU"]);
+                //ct.SauChietKhau = Convert.ToInt64(row["SAU_CHIETKHAU"]);
                 ct.MaSanPham = ctrl.LayMaSanPham(Convert.ToString(row["ID_MA_SAN_PHAM"]));
 
                 ds.Add(ct);
@@ -66,6 +70,8 @@ namespace CuahangNongduoc.Controller
                 ct.DonGia = Convert.ToInt64(row["DON_GIA"]);
                 ct.SoLuong = Convert.ToInt32(row["SO_LUONG"]);
                 ct.ThanhTien = Convert.ToInt64(row["THANH_TIEN"]);
+                //ct.ChietKhau = Convert.ToInt32(row["CHIET_KHAU"]);
+                //ct.SauChietKhau = Convert.ToInt64(row["SAU_CHIETKHAU"]);
                 ct.MaSanPham = ctrl.LayMaSanPham(Convert.ToString(row["ID_MA_SAN_PHAM"]));
 
                 ds.Add(ct);
@@ -84,6 +90,8 @@ namespace CuahangNongduoc.Controller
                 ct.DonGia = Convert.ToInt64(row["DON_GIA"]);
                 ct.SoLuong = Convert.ToInt32(row["SO_LUONG"]);
                 ct.ThanhTien = Convert.ToInt64(row["THANH_TIEN"]);
+                //ct.ChietKhau = Convert.ToInt32(row["CHIET_KHAU"]);
+                //ct.SauChietKhau = Convert.ToInt64(row["SAU_CHIETKHAU"]);
                 ct.MaSanPham = ctrl.LayMaSanPham(Convert.ToString(row["ID_MA_SAN_PHAM"]));
 
                 ds.Add(ct);
